@@ -59,15 +59,12 @@ function App() {
 
   return (
     <main className="font-sans bg-white text-black">
-      {/* Hero Section with background image */}
       <section
         className="relative min-h-[90vh] flex items-center px-6 md:px-24 py-20 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/image/hero.jpeg')" }}
       >
-        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent z-0" />
 
-        {/* Content */}
         <div className="relative z-10 max-w-2xl">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight text-white tracking-tight">
             Competify, <span className="text-[#FF521B]">Super App</span>{" "}
@@ -114,7 +111,6 @@ function App() {
         </div>
       </section>
 
-      {/* Section Features Premium */}
       <section className="bg-white py-28 px-6 md:px-24">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -158,7 +154,6 @@ function App() {
         </div>
       </section>
 
-      {/* Testimonials with Video Carousel */}
       <section className="bg-gradient-to-b from-white to-[#f7f7f7] py-24 px-6 md:px-24 overflow-x-hidden">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16">
@@ -199,14 +194,12 @@ function App() {
         </div>
       </section>
 
-      {/* FAQ Accordion Premium Style */}
       <section className="bg-[#f9f9f9] py-24 px-6 md:px-24">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900">
             Frequently Asked Questions
           </h2>
 
-          {/* Search Dummy */}
           <div className="mb-10 relative">
             <input
               type="text"
@@ -216,7 +209,6 @@ function App() {
             <span className="absolute left-4 top-3.5 text-gray-400">🔍</span>
           </div>
 
-          {/* Accordion List */}
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <div
@@ -295,7 +287,6 @@ function App() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-gray-100 py-10 text-center text-sm text-gray-500">
         © 2025 Competify. All rights reserved.
       </footer>
