@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import CountUp from "react-countup";
 
 function App() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -43,11 +46,19 @@ function App() {
     },
   ];
 
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }, []);
+
   return (
     <main className="font-sans bg-white text-black">
       <section
         className="relative min-h-[80vh] bg-cover bg-center bg-no-repeat px-6 md:px-24 py-20 grid grid-cols-1 md:grid-cols-2 items-center"
         style={{ backgroundImage: "url('/image/hero.jpeg')" }}
+        data-aos="fade-up"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent z-0" />
         <div className="relative z-10 space-y-6 max-w-xl">
@@ -112,9 +123,9 @@ function App() {
         </div>
       </section>
 
-      <section className="bg-white py-28 px-6 md:px-24">
+      <section className="bg-white py-28 px-6 md:px-24" data-aos="fade-up">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-4">
             Semua Fitur <span className="text-[#FF521B]">Olahraga</span>{" "}
             Favoritmu
           </h2>
@@ -158,7 +169,10 @@ function App() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-b from-white to-[#f7f7f7] py-32 px-6 md:px-24">
+      <section
+        className="bg-gradient-to-b from-white to-[#f7f7f7] py-32 px-6 md:px-24"
+        data-aos="fade-up"
+      >
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-4">
             Cerita dari <span className="text-[#FF521B]">Pengguna Setia</span>
@@ -169,7 +183,6 @@ function App() {
           </p>
 
           <div className="flex flex-col md:flex-row gap-12 items-center">
-            {/* Slider Testimonial */}
             <div className="w-full md:w-1/2">
               <Slider
                 {...{
@@ -198,7 +211,6 @@ function App() {
               </Slider>
             </div>
 
-            {/* Video Testimonial */}
             <div className="w-full md:w-1/2">
               <div className="relative rounded-3xl shadow-xl overflow-hidden">
                 <iframe
@@ -210,7 +222,6 @@ function App() {
                   allowFullScreen
                 ></iframe>
 
-                {/* Badge overlay */}
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-black text-xs font-semibold px-3 py-1 rounded-full shadow">
                   🎥 Video Testimoni
                 </div>
@@ -220,12 +231,135 @@ function App() {
         </div>
       </section>
 
-      <section className="bg-[#f9f9f9] py-24 px-6 md:px-24">
+      <section
+        className="bg-gradient-to-b from-[#f7f7f7] to-[#f9f9f9] py-24 px-6 md:px-24"
+        data-aos="fade-up"
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+            Competify dalam <span className="text-[#FF521B]">Angka</span>
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-16">
+            Kami terus bertumbuh bersama komunitas olahraga di Jabodetabek.
+          </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {[
+              { end: 25000, suffix: "+", label: "Pengguna Terdaftar" },
+              { end: 1200, suffix: "+", label: "Lapangan Terhubung" },
+              { end: 5000, suffix: "+", label: "Event Terselenggara" },
+              { end: 15, suffix: "+", label: "Kota Aktif" },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl shadow-md p-6 md:p-8 border border-gray-100 hover:shadow-lg transition-all duration-300"
+              >
+                <h3 className="text-3xl md:text-4xl font-extrabold text-[#FF521B] mb-2 tracking-tight">
+                  <CountUp
+                    end={item.end}
+                    duration={2.5}
+                    separator=","
+                    suffix={item.suffix}
+                  />
+                </h3>
+                <p className="text-gray-700 text-sm md:text-base font-medium">
+                  {item.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="bg-gradient-to-b from-[#f9f9f9] to-[#f7f7f7] py-28 px-6 md:px-24"
+        data-aos="fade-up"
+      >
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+            Langkah Mudah{" "}
+            <span className="text-[#FF521B]">Menggunakan Aplikasi</span>
+          </h2>
+          <p className="text-gray-600 text-lg">
+            Mulai olahraga bareng komunitas favoritmu hanya dalam tiga langkah.
+          </p>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto h-full">
+          <div className="hidden md:block absolute inset-y-0 left-1/2 w-0.5 h-full bg-[#FF521B]/20 transform -translate-x-1/2 pointer-events-none" />
+
+          {[
+            {
+              icon: "📲",
+              title: "Unduh & Daftar",
+              desc: "Download Competify lalu daftar dengan cepat. Gratis dan langsung siap pakai.",
+            },
+            {
+              icon: "📅",
+              title: "Booking Instan",
+              desc: "Pilih lapangan, atur waktu, dan booking hanya dalam hitungan detik.",
+            },
+            {
+              icon: "🤝",
+              title: "Main & Gabung Komunitas",
+              desc: "Datang, main bareng, dan bangun relasi dengan sesama pecinta olahraga.",
+            },
+          ].map((step, index) => (
+            <div
+              key={index}
+              className={`mb-20 flex flex-col gap-6 md:grid md:grid-cols-3 md:items-center relative z-10`}
+            >
+              <div className="md:hidden text-center">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FF521B] to-[#FF7C4C] text-white flex items-center justify-center text-xl font-semibold shadow-md mx-auto mb-4">
+                  {step.icon}
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-gray-600 text-sm">{step.desc}</p>
+              </div>
+              
+              {index % 2 === 0 ? (
+                <>
+                  <div className="hidden md:block md:text-right md:pr-4">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm">{step.desc}</p>
+                  </div>
+                  <div className="hidden md:flex w-full justify-center">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FF521B] to-[#FF7C4C] text-white flex items-center justify-center text-xl font-semibold shadow-md z-10">
+                      {step.icon}
+                    </div>
+                  </div>
+                  <div className="hidden md:block" />
+                </>
+              ) : (
+                <>
+                  <div className="hidden md:block" />
+                  <div className="hidden md:flex w-full justify-center">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FF521B] to-[#FF7C4C] text-white flex items-center justify-center text-xl font-semibold shadow-md z-10">
+                      {step.icon}
+                    </div>
+                  </div>
+                  <div className="hidden md:block md:text-left md:pl-4">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm">{step.desc}</p>
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-[#f7f7f7] py-24 px-6 md:px-24" data-aos="fade-up">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
             Frequently Asked Questions
           </h2>
-
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <div
