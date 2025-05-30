@@ -60,7 +60,7 @@ function App() {
   return (
     <main className="font-sans bg-white text-black">
       <section
-        className="relative min-h-[90vh] flex items-center px-6 md:px-24 py-20 bg-cover bg-center bg-no-repeat"
+        className="relative min-h-[70vh] flex items-center px-6 md:px-24 py-20 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/image/hero.jpeg')" }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent z-0" />
