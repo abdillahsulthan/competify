@@ -1,5 +1,15 @@
 import { useState, useEffect } from "react";
-import { FaGooglePlay, FaApple } from "react-icons/fa";
+import {
+  FaGooglePlay,
+  FaApple,
+  FaMapMarkerAlt,
+  FaUsers,
+  FaTrophy,
+  FaMobileAlt,
+  FaCalendarAlt,
+  FaHandshake,
+} from "react-icons/fa";
+import { motion } from "framer-motion";
 import { Transition } from "@headlessui/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -10,6 +20,24 @@ import CountUp from "react-countup";
 
 function App() {
   const [openIndex, setOpenIndex] = useState(null);
+
+  const steps = [
+    {
+      icon: <FaMobileAlt />,
+      title: "Unduh & Daftar",
+      desc: "Download Competify lalu daftar dengan cepat. Gratis dan langsung siap pakai.",
+    },
+    {
+      icon: <FaCalendarAlt />,
+      title: "Booking Instan",
+      desc: "Pilih lapangan, atur waktu, dan booking hanya dalam hitungan detik.",
+    },
+    {
+      icon: <FaHandshake />,
+      title: "Main & Gabung Komunitas",
+      desc: "Datang, main bareng, dan bangun relasi dengan sesama pecinta olahraga.",
+    },
+  ];
 
   const faqs = [
     {
@@ -26,6 +54,24 @@ function App() {
       question: "Competify tersedia di kota mana saja?",
       answer:
         "Saat ini aktif di Jabodetabek dan akan segera ekspansi ke kota besar lainnya.",
+    },
+  ];
+
+  const features = [
+    {
+      icon: <FaMapMarkerAlt className="text-[#FF521B] w-12 h-12" />,
+      title: "Booking Lapangan Instan",
+      desc: "Pesan lapangan favoritmu dalam hitungan detik, lengkap dengan info harga & jadwal.",
+    },
+    {
+      icon: <FaUsers className="text-[#FF521B] w-12 h-12" />,
+      title: "Komunitas Terhubung",
+      desc: "Gabung komunitas olahraga, atur jadwal rutin, dan main bareng teman baru.",
+    },
+    {
+      icon: <FaTrophy className="text-[#FF521B] w-12 h-12" />,
+      title: "Event & Turnamen",
+      desc: "Ikuti berbagai event, dari fun match santai hingga turnamen serius.",
     },
   ];
 
@@ -111,45 +157,47 @@ function App() {
 
       <section className="bg-white py-28 px-6 md:px-24" data-aos="fade-up">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
             Semua Fitur <span className="text-[#FF521B]">Olahraga</span>{" "}
             Favoritmu
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-20">
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-20 leading-relaxed">
             Competify menyatukan berbagai layanan olahraga dalam satu aplikasi
             yang elegan, cepat, dan mudah digunakan.
           </p>
 
           <div className="grid md:grid-cols-3 gap-10">
-            {[
-              {
-                icon: "📍",
-                title: "Booking Lapangan Instan",
-                desc: "Pesan lapangan favoritmu dalam hitungan detik, lengkap dengan info harga & jadwal.",
-              },
-              {
-                icon: "🧑‍🤝‍🧑",
-                title: "Komunitas Terhubung",
-                desc: "Gabung komunitas olahraga, atur jadwal rutin, dan main bareng teman baru.",
-              },
-              {
-                icon: "🏆",
-                title: "Event & Turnamen",
-                desc: "Ikuti berbagai event, dari fun match santai hingga turnamen serius.",
-              },
-            ].map((item, idx) => (
-              <div
+            {features.map((item, idx) => (
+              <motion.div
                 key={idx}
-                className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-xl p-8 transition hover:shadow-2xl hover:-translate-y-1"
+                data-aos="fade-up"
+                data-aos-delay={idx * 150}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.15 }}
+                className="bg-white rounded-3xl shadow-lg p-8 border border-gray-200 cursor-pointer
+                     hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-transform duration-300 ease-in-out text-center"
               >
-                <div className="text-5xl mb-4">{item.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="mb-6 flex justify-center"
+                >
+                  {item.icon}
+                </motion.div>
+
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-700 text-base leading-relaxed">
                   {item.desc}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -239,7 +287,7 @@ function App() {
                 key={idx}
                 className="bg-white rounded-3xl shadow-lg p-8 border border-gray-200 hover:shadow-2xl transition-all duration-300"
               >
-                <h3 className="text-4xl font-extrabold text-[#FF521B] mb-3 tracking-tight">
+                <h3 className="text-2xl md:text-4xl font-extrabold text-[#FF521B] mb-3 tracking-tight">
                   <CountUp
                     end={item.end}
                     duration={2.5}
@@ -247,7 +295,7 @@ function App() {
                     suffix={item.suffix}
                   />
                 </h3>
-                <p className="text-gray-800 text-base font-semibold">
+                <p className="text-gray-800 text-xs md:text-base font-semibold">
                   {item.label}
                 </p>
               </div>
@@ -273,31 +321,19 @@ function App() {
         <div className="relative max-w-4xl mx-auto h-full">
           <div className="hidden md:block absolute inset-y-0 left-1/2 w-0.5 h-full bg-[#FF521B]/20 transform -translate-x-1/2 pointer-events-none" />
 
-          {[
-            {
-              icon: "📲",
-              title: "Unduh & Daftar",
-              desc: "Download Competify lalu daftar dengan cepat. Gratis dan langsung siap pakai.",
-            },
-            {
-              icon: "📅",
-              title: "Booking Instan",
-              desc: "Pilih lapangan, atur waktu, dan booking hanya dalam hitungan detik.",
-            },
-            {
-              icon: "🤝",
-              title: "Main & Gabung Komunitas",
-              desc: "Datang, main bareng, dan bangun relasi dengan sesama pecinta olahraga.",
-            },
-          ].map((step, index) => (
+          {steps.map((step, index) => (
             <div
               key={index}
               className={`mb-20 flex flex-col gap-6 md:grid md:grid-cols-3 md:items-center relative z-10`}
             >
               <div className="md:hidden text-center">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FF521B] to-[#FF7C4C] text-white flex items-center justify-center text-xl font-semibold shadow-md mx-auto mb-4">
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  className="rounded-full bg-gradient-to-br from-[#FF521B] to-[#FF7C4C] text-white flex items-center justify-center shadow-md cursor-pointer
+          w-14 h-14 text-2xl mx-auto mb-4"
+                >
                   {step.icon}
-                </div>
+                </motion.div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">
                   {step.title}
                 </h3>
@@ -313,9 +349,13 @@ function App() {
                     <p className="text-gray-600 text-sm">{step.desc}</p>
                   </div>
                   <div className="hidden md:flex w-full justify-center">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FF521B] to-[#FF7C4C] text-white flex items-center justify-center text-xl font-semibold shadow-md z-10">
+                    <motion.div
+                      whileHover={{ scale: 1.2, rotate: 10 }}
+                      className="rounded-full bg-gradient-to-br from-[#FF521B] to-[#FF7C4C] text-white flex items-center justify-center shadow-md cursor-pointer
+              w-20 h-20 text-3xl mx-auto"
+                    >
                       {step.icon}
-                    </div>
+                    </motion.div>
                   </div>
                   <div className="hidden md:block" />
                 </>
@@ -323,9 +363,13 @@ function App() {
                 <>
                   <div className="hidden md:block" />
                   <div className="hidden md:flex w-full justify-center">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FF521B] to-[#FF7C4C] text-white flex items-center justify-center text-xl font-semibold shadow-md z-10">
+                    <motion.div
+                      whileHover={{ scale: 1.2, rotate: 10 }}
+                      className="rounded-full bg-gradient-to-br from-[#FF521B] to-[#FF7C4C] text-white flex items-center justify-center shadow-md cursor-pointer
+              w-20 h-20 text-3xl mx-auto"
+                    >
                       {step.icon}
-                    </div>
+                    </motion.div>
                   </div>
                   <div className="hidden md:block md:text-left md:pl-4">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -341,7 +385,7 @@ function App() {
       </section>
 
       <section
-        className="bg-[#f7f7f7] pt-16 pb-24 px-6 md:px-24"
+        className="bg-[#f7f7f7] pt-10 pb-24 px-6 md:px-24"
         data-aos="fade-up"
       >
         <div className="max-w-3xl mx-auto">
@@ -349,7 +393,6 @@ function App() {
             Frequently Asked Questions
           </h2>
           <div className="space-y-4">
-            {/* FAQ */}
             {faqs.map((faq, index) => (
               <div
                 key={index}
