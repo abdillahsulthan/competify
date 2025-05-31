@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaGooglePlay, FaApple } from "react-icons/fa";
 import { Transition } from "@headlessui/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -82,14 +83,7 @@ function App() {
               href="#"
               className="bg-white px-5 py-3 rounded-xl flex items-center gap-2 text-sm shadow hover:scale-105 transition"
             >
-              <svg
-                className="w-5 h-5"
-                viewBox="0 0 512 512"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M325.3 234.3 104.1 23.3c-4.5-4.3-10.6-6.9-16.5-6.9-13 0-23.6 10.6-23.6 23.6v452c0 13 10.6 23.6 23.6 23.6 6 0 12-2.5 16.5-6.9l221.2-211c10.1-9.6 10.1-25.3 0-34.4zM372.8 292.3l-53.3-50.8 53.3-50.8 91.3 86.3-91.3 86.3v-70.9z" />
-              </svg>
+              <FaGooglePlay className="w-5 h-5" />
               <span className="font-semibold">Google Play</span>
             </a>
 
@@ -97,20 +91,12 @@ function App() {
               href="#"
               className="bg-white px-5 py-3 rounded-xl flex items-center gap-2 text-sm shadow hover:scale-105 transition"
             >
-              <svg
-                className="w-5 h-5"
-                viewBox="0 0 384 512"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M318.7 268.6c-.3-37.2 16.5-65.3 51.3-86.2-19.2-27.9-47.9-43.5-84.4-46.6-35.4-3-74.4 20.5-88 20.5-14.3 0-50.3-19.8-77.9-19.2-40.1.6-76.1 23.2-96.5 59.2-41.3 71.5-10.5 177.5 29.6 235.6 19.6 28.4 42.7 60.2 73.3 59 29.1-1.1 40.2-18.8 75.2-18.8 34.9 0 44.6 18.8 75.3 18.2 31.2-.5 51.1-29.1 70.4-57.8 12.2-18.6 16.9-28.2 26.4-49.4-69.4-26.5-81-121.5-25.2-160.5zM261.1 93.4c20.4-23.4 18.9-51.3 18.1-61.4-27.3 1.1-59.5 18.2-78.7 39.7-17.2 19.3-32.5 48.6-28.4 77.5 30.3 2.4 61.4-15.3 88.9-55.8z" />
-              </svg>
+              <FaApple className="w-5 h-5" />
               <span className="font-semibold">App Store</span>
             </a>
           </div>
         </div>
 
-        {/* Kolom Kanan: Gambar */}
         <div className="relative z-10 flex justify-end mt-12 md:mt-0">
           <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg">
             <div className="absolute -top-10 -right-10 w-72 h-72 bg-[#FF521B] blur-3xl opacity-20 rounded-full z-0" />
@@ -242,8 +228,7 @@ function App() {
           <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-16">
             Kami terus bertumbuh bersama komunitas olahraga di Jabodetabek.
           </p>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { end: 25000, suffix: "+", label: "Pengguna Terdaftar" },
               { end: 1200, suffix: "+", label: "Lapangan Terhubung" },
@@ -252,9 +237,9 @@ function App() {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-2xl shadow-md p-6 md:p-8 border border-gray-100 hover:shadow-lg transition-all duration-300"
+                className="bg-white rounded-3xl shadow-lg p-8 border border-gray-200 hover:shadow-2xl transition-all duration-300"
               >
-                <h3 className="text-3xl md:text-4xl font-extrabold text-[#FF521B] mb-2 tracking-tight">
+                <h3 className="text-4xl font-extrabold text-[#FF521B] mb-3 tracking-tight">
                   <CountUp
                     end={item.end}
                     duration={2.5}
@@ -262,7 +247,7 @@ function App() {
                     suffix={item.suffix}
                   />
                 </h3>
-                <p className="text-gray-700 text-sm md:text-base font-medium">
+                <p className="text-gray-800 text-base font-semibold">
                   {item.label}
                 </p>
               </div>
@@ -318,7 +303,7 @@ function App() {
                 </h3>
                 <p className="text-gray-600 text-sm">{step.desc}</p>
               </div>
-              
+
               {index % 2 === 0 ? (
                 <>
                   <div className="hidden md:block md:text-right md:pr-4">
@@ -355,27 +340,34 @@ function App() {
         </div>
       </section>
 
-      <section className="bg-[#f7f7f7] py-24 px-6 md:px-24" data-aos="fade-up">
+      <section
+        className="bg-[#f7f7f7] pt-16 pb-24 px-6 md:px-24"
+        data-aos="fade-up"
+      >
         <div className="max-w-3xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
             Frequently Asked Questions
           </h2>
           <div className="space-y-4">
+            {/* FAQ */}
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-white border border-gray-200 rounded-xl shadow-sm transition-all"
+                className="bg-white border border-gray-200 rounded-2xl shadow-sm transition-all hover:shadow-md"
               >
                 <button
                   onClick={() =>
                     setOpenIndex(openIndex === index ? null : index)
                   }
-                  className={`w-full flex justify-between items-center px-6 py-4 text-left text-gray-900 font-medium focus:outline-none transition duration-300 ${
+                  className={`w-full flex justify-between items-center px-6 py-5 text-left text-gray-900 font-semibold focus:outline-none transition duration-300 ${
                     openIndex === index ? "bg-[#FF521B]/10 text-[#FF521B]" : ""
                   }`}
+                  aria-expanded={openIndex === index}
+                  aria-controls={`faq-content-${index}`}
+                  id={`faq-header-${index}`}
                 >
                   <span>{faq.question}</span>
-                  <span className="text-xl">
+                  <span className="text-2xl font-bold select-none">
                     {openIndex === index ? "−" : "+"}
                   </span>
                 </button>
@@ -389,7 +381,12 @@ function App() {
                   leaveFrom="max-h-[500px] opacity-100"
                   leaveTo="max-h-0 opacity-0"
                 >
-                  <div className="px-6 py-6 text-gray-600 text-sm overflow-hidden">
+                  <div
+                    id={`faq-content-${index}`}
+                    role="region"
+                    aria-labelledby={`faq-header-${index}`}
+                    className="px-6 py-5 text-gray-700 text-sm overflow-hidden"
+                  >
                     {faq.answer}
                   </div>
                 </Transition>
@@ -411,31 +408,15 @@ function App() {
                 href="#"
                 className="bg-black text-white px-6 py-3 rounded-xl text-sm font-semibold shadow hover:scale-105 transition flex items-center gap-2"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M17.564 11.52a6.552 6.552 0 0 0-.072-.816H12v2.491h3.16c-.142.947-.566 1.747-1.2 2.288v1.892h1.936c1.134-1.044 1.768-2.584 1.768-4.355z" />
-                  <path d="M12 18c1.62 0 2.978-.54 3.97-1.44l-1.936-1.892c-.538.36-1.228.572-2.034.572-1.56 0-2.886-1.052-3.358-2.462H6.616v1.957A5.995 5.995 0 0 0 12 18z" />
-                  <path d="M8.642 13.278a3.57 3.57 0 0 1 0-2.282V9.04H6.616a6.005 6.005 0 0 0 0 5.92l2.026-1.682z" />
-                  <path d="M12 7.43c.882 0 1.672.304 2.296.902l1.722-1.722C15.972 5.26 14.614 4.72 12 4.72a5.995 5.995 0 0 0-5.384 3.32l2.026 1.682C9.114 8.482 10.44 7.43 12 7.43z" />
-                </svg>
+                <FaGooglePlay className="w-5 h-5" />
                 Google Play
               </a>
+
               <a
                 href="#"
                 className="bg-black text-white px-6 py-3 rounded-xl text-sm font-semibold shadow hover:scale-105 transition flex items-center gap-2"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 384 512"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M318.7 268.6c-.3-37.2 16.5-65.3 51.3-86.2-19.2-27.9-47.9-43.5-84.4-46.6-35.4-3-74.4 20.5-88 20.5-14.3 0-50.3-19.8-77.9-19.2-40.1.6-76.1 23.2-96.5 59.2-41.3 71.5-10.5 177.5 29.6 235.6 19.6 28.4 42.7 60.2 73.3 59 29.1-1.1 40.2-18.8 75.2-18.8 34.9 0 44.6 18.8 75.3 18.2 31.2-.5 51.1-29.1 70.4-57.8 12.2-18.6 16.9-28.2 26.4-49.4-69.4-26.5-81-121.5-25.2-160.5zM261.1 93.4C281.5 70 280 42.1 279.2 32c-27.3 1.1-59.5 18.2-78.7 39.7-17.2 19.3-32.5 48.6-28.4 77.5 30.3 2.4 61.4-15.3 88.9-55.8z" />
-                </svg>
+                <FaApple className="w-5 h-5" />
                 App Store
               </a>
             </div>
@@ -446,72 +427,81 @@ function App() {
       <footer className="bg-[#1F1F1F] text-white py-16 px-6 md:px-24">
         <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-12 text-sm">
           <div>
-            <h3 className="text-2xl font-bold text-white mb-2">Competify</h3>
+            <h3 className="text-2xl font-bold mb-2">Competify</h3>
             <p className="text-gray-400">
               Super App untuk semua kebutuhan olahraga kamu.
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold text-white mb-4">Menu</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <a href="#">Beranda</a>
-              </li>
-              <li>
-                <a href="#">Fitur</a>
-              </li>
-              <li>
-                <a href="#">Komunitas</a>
-              </li>
-              <li>
-                <a href="#">Turnamen</a>
-              </li>
+            <h4 className="font-semibold mb-4">Menu</h4>
+            <ul className="space-y-3 text-gray-400">
+              {["Beranda", "Fitur", "Komunitas", "Turnamen"].map(
+                (item, idx) => (
+                  <li key={idx}>
+                    <a
+                      href="#"
+                      className="hover:text-[#FF521B] transition-colors duration-300"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                )
+              )}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold text-white mb-4">Bantuan</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <a href="#">FAQ</a>
-              </li>
-              <li>
-                <a href="#">Kontak</a>
-              </li>
-              <li>
-                <a href="#">Kebijakan Privasi</a>
-              </li>
-              <li>
-                <a href="#">Syarat & Ketentuan</a>
-              </li>
+            <h4 className="font-semibold mb-4">Bantuan</h4>
+            <ul className="space-y-3 text-gray-400">
+              {["FAQ", "Kontak", "Kebijakan Privasi", "Syarat & Ketentuan"].map(
+                (item, idx) => (
+                  <li key={idx}>
+                    <a
+                      href="#"
+                      className="hover:text-[#FF521B] transition-colors duration-300"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                )
+              )}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold text-white mb-4">Ikuti Kami</h4>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white">
+            <h4 className="font-semibold mb-4">Ikuti Kami</h4>
+            <div className="flex space-x-6">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors duration-300"
+              >
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path d="M22 12a10 10 0 1 0-11.62 9.87v-6.99H7.1v-2.88h3.28V9.41c0-3.24 1.92-5.03 4.87-5.03 1.41 0 2.89.25 2.89.25v3.17h-1.63c-1.61 0-2.11 1-2.11 2.03v2.44h3.6l-.58 2.88h-3.02v6.99A10 10 0 0 0 22 12Z" />
                 </svg>
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors duration-300"
+              >
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path d="M23.643 4.937a9.685 9.685 0 0 1-2.828.775 4.93 4.93 0 0 0 2.165-2.723c-.951.555-2.005.959-3.127 1.184a4.918 4.918 0 0 0-8.38 4.482A13.969 13.969 0 0 1 1.671 3.149a4.902 4.902 0 0 0 1.523 6.556 4.903 4.903 0 0 1-2.229-.616v.06a4.918 4.918 0 0 0 3.946 4.827 4.935 4.935 0 0 1-2.224.084 4.918 4.918 0 0 0 4.6 3.417A9.867 9.867 0 0 1 .96 19.74a13.936 13.936 0 0 0 7.548 2.212c9.057 0 14.01-7.497 14.01-13.986 0-.21-.004-.423-.014-.633A10.012 10.012 0 0 0 24 4.59a9.728 9.728 0 0 1-2.357.647z" />
                 </svg>
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors duration-300"
+              >
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -520,10 +510,10 @@ function App() {
               </a>
             </div>
           </div>
-        </div>
 
-        <div className="text-center text-gray-500 mt-12 text-xs border-t border-[#333333] pt-6">
-          © 2025 Competify. All rights reserved.
+          <div className="text-center text-gray-500 mt-12 text-xs border-t border-[#333333] pt-6">
+            © 2025 Competify. All rights reserved.
+          </div>
         </div>
       </footer>
     </main>
